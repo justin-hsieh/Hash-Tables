@@ -51,7 +51,16 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self._hash_mod(key)
+        current_value = self.storage[index]
+
+        if current_value is not None:
+            print("Warning", value, " Colliding ", current_value.value)
+            newLinkPair = LinkedPair(key, value)
+            newLinkPair.next = self.storage[index]
+            self.storage[index] = newLinkPair
+        else:
+            self.storage[index] = LinkedPair(key, value)
 
 
 
@@ -63,7 +72,11 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self._hash_mod(key)
+        if self.storage[index] is None:
+            print("The Key has not been found")
+        else:
+            self.storage[index] = None
 
 
     def retrieve(self, key):
@@ -74,7 +87,16 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self._hash_mod(key)
+        current_key = self.storage[index]
+        
+        while current_key:
+            if current_key.key != key:
+                current_key = current_key.next
+            else:
+                return current_key.value
+
+        return None
 
 
     def resize(self):

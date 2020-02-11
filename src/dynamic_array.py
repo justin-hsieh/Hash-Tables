@@ -6,7 +6,7 @@ class DynamicArray:
 
     def insert(self, index, value):
         if self.count == self.capacity:
-            # TODO: increase size
+            self.double_size()
             print("ERROR: Array is full")
             return
 
@@ -23,7 +23,7 @@ class DynamicArray:
 
     def append(self, value):
         if self.count == self.capacity:
-            # TODO: increase size
+            self.double_size()
             print("ERROR: Array is full")
             return
 
